@@ -13,7 +13,11 @@ extern "C" {
     fn alert(s: &str);
 }
 
+#[allow(unused_unsafe)]
 #[wasm_bindgen]
-pub fn greet() {
-    alert("Hello, wasm-game-of-life!");
+pub fn greet(name: &str) {
+    unsafe {
+        let message = format!("Hello, {}!", name);
+        alert(&message);
+    }
 }
